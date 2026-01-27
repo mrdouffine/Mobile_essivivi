@@ -1,7 +1,7 @@
 /// API Configuration Constants
 class ApiConfig {
   // Base URL
-  static const String baseUrl = 'http://localhost:8083/api';
+  static const String baseUrl = 'https://essivi-backend.onrender.com/api';
   
   // Timeouts
   static const Duration connectTimeout = Duration(seconds: 30);
@@ -52,7 +52,7 @@ class ApiConfig {
   static const String preferencesEndpoint = '/preferences/';
   
   // WebSocket
-  static const String wsBaseUrl = 'ws://localhost:8083/ws';
+  static const String wsBaseUrl = 'wss://essivi-backend.onrender.com/ws';
 }
 
 /// Environment Configuration
@@ -68,7 +68,7 @@ class EnvironmentConfig {
   static String get baseUrl {
     switch (current) {
       case Environment.development:
-        return 'http://localhost:8083/api';
+        return 'https://essivi-backend.onrender.com/api';
       case Environment.staging:
         return 'https://staging.essivi.com/api';
       case Environment.production:
@@ -79,7 +79,7 @@ class EnvironmentConfig {
   static String get wsBaseUrl {
     switch (current) {
       case Environment.development:
-        return 'ws://localhost:8083/ws';
+        return 'wss://essivi-backend.onrender.com/ws';
       case Environment.staging:
         return 'wss://staging.essivi.com/ws';
       case Environment.production:

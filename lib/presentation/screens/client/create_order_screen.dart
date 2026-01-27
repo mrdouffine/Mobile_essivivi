@@ -796,6 +796,11 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
     );
 
     await cartRepo.addToCart(item);
+    
+    // Refresh to update cart badge
+    if (mounted) {
+      setState(() {});
+    }
 
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(

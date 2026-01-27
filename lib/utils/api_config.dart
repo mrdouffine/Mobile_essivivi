@@ -21,9 +21,9 @@ class ApiConfig {
     // Android Emulator: 10.0.2.2:8081
     // iOS/Desktop: localhost:8081
     if (Platform.isAndroid) {
-      return 'http://10.0.2.2:8083/api';
+      return 'https://essivi-backend.onrender.com/api';
     }
-    return 'http://localhost:8083/api';
+    return 'https://essivi-backend.onrender.com/api';
   }
 
   static String get wsUrl {
@@ -33,13 +33,13 @@ class ApiConfig {
     }
     
     if (Platform.isAndroid) {
-      return 'ws://10.0.2.2:8083/ws/notifications/';
+      return 'wss://essivi-backend.onrender.com/ws/notifications/';
     }
-    return 'ws://localhost:8083/ws/notifications/';
+    return 'wss://essivi-backend.onrender.com/ws/notifications/';
   }
   
   // Alternative URLs for different environments
-  static const String localUrl = 'http://localhost:8083/api';  // Via Traefik
+  static const String localUrl = 'https://essivi-backend.onrender.com/api';  // Via Traefik
   static const String productionUrl = 'https://api.essivivi.com/api'; // Update with actual production URL
   
   // Timeout settings
