@@ -8,6 +8,7 @@ import 'package:essivi_mobile/data/models/sales_models.dart';
 import 'package:essivi_mobile/services/phone_service.dart';
 import 'package:essivi_mobile/data/repositories/user_repository.dart';
 import 'package:essivi_mobile/data/models/user_models.dart';
+import 'package:essivi_mobile/presentation/widgets/rate_agent_modal.dart';
 
 class ShipmentDetailsScreen extends StatefulWidget {
   final Map<String, dynamic> shipmentData;
@@ -93,6 +94,7 @@ class _ShipmentDetailsScreenState extends State<ShipmentDetailsScreen> {
       try {
         await _salesRepo.confirmCommande(_commande!.id);
         await _loadCommandeDetails();
+        
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
@@ -100,6 +102,21 @@ class _ShipmentDetailsScreenState extends State<ShipmentDetailsScreen> {
               backgroundColor: Colors.green,
             ),
           );
+
+          // Show rating modal if there is an agent assigned
+          if (_commande!.agentId != null) {
+            String agentName = _agentProfile?.user?.fullName ?? _agentProfile?.user?.username ?? 'Livreur';
+            await showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              backgroundColor: Colors.transparent,
+              builder: (context) => RateAgentModal(
+                commandeId: _commande!.id,
+                agentId: _commande!.agentId!,
+                agentName: agentName,
+              ),
+            );
+          }
         }
       } catch (e) {
         if (mounted) {

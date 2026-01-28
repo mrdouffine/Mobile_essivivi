@@ -221,6 +221,8 @@ class SignupRequest {
   final String password;
   final String role;
   final String? phoneNumber;
+  final String? firstName;
+  final String? lastName;
 
   SignupRequest({
     required this.username,
@@ -228,6 +230,8 @@ class SignupRequest {
     required this.password,
     required this.role,
     this.phoneNumber,
+    this.firstName,
+    this.lastName,
   });
 
   Map<String, dynamic> toJson() {
@@ -237,6 +241,8 @@ class SignupRequest {
       'password': password,
       'role': role,
       'phone_number': phoneNumber,
+      'first_name': firstName,
+      'last_name': lastName,
     };
   }
 }

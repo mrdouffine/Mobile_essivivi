@@ -324,4 +324,27 @@ class SalesRepository {
       rethrow;
     }
   }
+
+  // ========== Agent Rating ==========
+
+  /// Rate an agent for a specific commande
+  Future<AgentRating> rateAgent({
+    required int commandeId,
+    required int rating,
+    String? comment,
+  }) async {
+    try {
+      final response = await _apiService.client.post(
+        ApiConfig.agentRatingsEndpoint,
+        data: {
+          'commande': commandeId,
+          'rating': rating,
+          'comment': comment,
+        },
+      );
+      return AgentRating.fromJson(response.data);
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

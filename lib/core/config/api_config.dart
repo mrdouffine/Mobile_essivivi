@@ -12,8 +12,8 @@ class ApiConfig {
   static const String loginEndpoint = '/auth/login/';
   static const String signupEndpoint = '/auth/signup/';
   static const String logoutEndpoint = '/auth/logout/';
-  static const String meEndpoint = '/auth/me/';
-  static const String tokenRefreshEndpoint = '/auth/token/refresh/';
+  static const String meEndpoint = '/users/me/';
+  static const String tokenRefreshEndpoint = '/token/refresh/';
   static const String changePasswordEndpoint = '/auth/change-password/';
 
   // Storage Keys
@@ -26,10 +26,11 @@ class ApiConfig {
   // Sales Endpoints
   static const String commandesEndpoint = '/sales/commandes/';
   static const String livraisonsEndpoint = '/sales/livraisons/';
+  static const String agentRatingsEndpoint = '/sales/agent-ratings/';
   
   // Logistics Endpoints
   static const String tourneesEndpoint = '/logistics/tournees/';
-  static const String agentsEndpoint = '/logistics/agents/';
+  static const String agentsEndpoint = '/users/agents/';
   
   // User Endpoints
   static const String clientsEndpoint = '/users/clients/';

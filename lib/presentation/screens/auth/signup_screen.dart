@@ -19,6 +19,8 @@ class _SignupScreenState extends State<SignupScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _phoneController = TextEditingController();
+  final _firstNameController = TextEditingController();
+  final _lastNameController = TextEditingController();
   final _authRepo = AuthRepository();
   
   bool _isLoading = false;
@@ -27,6 +29,8 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   void dispose() {
     _usernameController.dispose();
+    _firstNameController.dispose();
+    _lastNameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     _phoneController.dispose();
@@ -45,6 +49,8 @@ class _SignupScreenState extends State<SignupScreen> {
         password: _passwordController.text,
         phoneNumber: _phoneController.text.trim(),
         role: _selectedRole,
+        firstName: _firstNameController.text.trim(),
+        lastName: _lastNameController.text.trim(),
       );
 
       await _authRepo.signup(request: request);
@@ -162,6 +168,58 @@ class _SignupScreenState extends State<SignupScreen> {
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Veuillez entrer un nom d\'utilisateur';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 16),
+                
+                // First Name
+                TextFormField(
+                  controller: _firstNameController,
+                  style: theme.textTheme.bodyLarge,
+                  decoration: InputDecoration(
+                    labelText: 'First Name',
+                    labelStyle: theme.textTheme.bodyMedium,
+                    hintStyle: theme.textTheme.bodySmall,
+                    prefixIcon: const Icon(Icons.person, color: AppColors.primary),
+                    filled: true,
+                    fillColor: theme.cardColor,
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: theme.dividerColor),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Veuillez entrer votre prénom';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 16),
+                
+                // Last Name
+                TextFormField(
+                  controller: _lastNameController,
+                  style: theme.textTheme.bodyLarge,
+                  decoration: InputDecoration(
+                    labelText: 'Last Name',
+                    labelStyle: theme.textTheme.bodyMedium,
+                    hintStyle: theme.textTheme.bodySmall,
+                    prefixIcon: const Icon(Icons.person, color: AppColors.primary),
+                    filled: true,
+                    fillColor: theme.cardColor,
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: theme.dividerColor),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Veuillez entrer votre nom';
                     }
                     return null;
                   },

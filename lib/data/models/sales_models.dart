@@ -241,3 +241,43 @@ class CreateLivraisonRequest {
     };
   }
 }
+
+class AgentRating {
+  final int id;
+  final int commandeId;
+  final int agentId;
+  final int rating;
+  final String? comment;
+  final String createdAt;
+
+  AgentRating({
+    required this.id,
+    required this.commandeId,
+    required this.agentId,
+    required this.rating,
+    this.comment,
+    required this.createdAt,
+  });
+
+  factory AgentRating.fromJson(Map<String, dynamic> json) {
+    return AgentRating(
+      id: json['id'] as int,
+      commandeId: json['commande'] as int,
+      agentId: json['agent'] as int,
+      rating: json['rating'] as int,
+      comment: json['comment'] as String?,
+      createdAt: json['created_at'] as String,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'commande': commandeId,
+      'agent': agentId,
+      'rating': rating,
+      'comment': comment,
+      'created_at': createdAt,
+    };
+  }
+}
